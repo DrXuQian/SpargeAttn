@@ -46,6 +46,14 @@ forbidden = ("hgcc", "hgobjdump", "build_ext", "setup_ppu.py")
 bad = [token for token in forbidden if token in runner]
 if bad:
     raise SystemExit(f"[PPU Sparge runner] FAIL: execution runner can compile: {bad}")
+if '[[ ! -d "$sage_repo/.git" ]]' in runner:
+    raise SystemExit(
+        "[PPU Sparge runner] FAIL: Sage repository guard rejects gitfile submodules"
+    )
+if 'git -C "$sage_repo" rev-parse --is-inside-work-tree' not in runner:
+    raise SystemExit(
+        "[PPU Sparge runner] FAIL: Sage repository guard is not Git-semantic"
+    )
 print("[PPU Sparge runner] execution-only/PASS")
 PY
 

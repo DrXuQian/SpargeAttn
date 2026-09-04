@@ -8,7 +8,7 @@ out="${OUT:-/workspace/spargeattn-ppu-${sha:0:8}-$(date -u +%Y%m%dT%H%M%SZ)}"
 runtime_dir="${PPU_RUNTIME_DIR:-${PPU_SDK:-${PPU_HOME:-/usr/local/PPU_SDK}}/lib}"
 mkdir -p "$out"
 
-if [[ ! -d "$sage_repo/.git" ]]; then
+if ! git -C "$sage_repo" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   printf '[PPU Sparge box] FAIL: dense SageAttention anchor repo missing: %s\n' \
     "$sage_repo" >&2
   exit 1

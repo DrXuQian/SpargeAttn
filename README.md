@@ -81,6 +81,29 @@ python setup.py install   # or pip install -e .
 
 - `spas_sage_attn_meansim_cuda`: SpargeAttn based on [SageAttention](https://github.com/thu-ml/SageAttention) that we do not recommend.
 
+### PPU backend
+
+The actlize-backed PPU source graph is independent of the NVIDIA extensions.
+It owns block-sparse execution and Q/K quantization; RadialAttention remains
+the policy layer that supplies its Q128/KV64 `mask_id`.
+
+```bash
+git submodule update --init third_party/actlize
+PPU_SDK=/path/to/PPU_SDK python setup_ppu.py build_ext --inplace
+```
+
+```python
+from spas_sage_attn import block_sparse_sage2_attn_ppu
+
+output = block_sparse_sage2_attn_ppu(
+    q, k, v, mask_id=mask_id, tensor_layout="HND"
+)
+```
+
+The current PPU boundary is forward-only BF16 Q/K/V, D128, non-causal,
+FP16 V inside the kernel, and no dropout or LSE. Full contracts and admission
+tests are in [`docs/PPU_BLOCK_SPARSE.md`](docs/PPU_BLOCK_SPARSE.md).
+
 
 
 ## Usage

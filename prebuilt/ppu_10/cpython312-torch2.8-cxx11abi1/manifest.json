@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "artifact": "_qattn_ppu.cpython-312-x86_64-linux-gnu.so",
+  "artifact_sha256": "6edf3d7ae952865a7ab440e5a641117f95c1401a6b75a00b2d6cfece77e92d61",
+  "artifact_size": 527112,
+  "build": {
+    "source_git_commit": "4b379280732c7047ee246079e76c82fa5d65531c",
+    "actlize_git_commit": "423253c00df333ead6fb72ea623d526f24f56b5a",
+    "ppu_arch": "ppu_10",
+    "ppu_sdk_release": "2.1.1-a5c56e",
+    "hgcc_build": "Jul 25 2026 09:15:42",
+    "python_cache_tag": "cpython-312",
+    "torch_public_version": "2.8.0",
+    "torch_build_version": "2.8.0+cu128",
+    "cxx11_abi": true
+  },
+  "resource_evidence": {
+    "specializations": 17,
+    "max_vector_registers": 256,
+    "nonzero_private_frames": [8, 8],
+    "radial": {
+      "vector_registers": 188,
+      "scalar_registers": 96,
+      "private_frame_bytes": 0,
+      "geometry": "Q128/KV64/8warp"
+    },
+    "scope": "measured locally from the exact artifact with hgobjdump"
+  },
+  "required_ppu_runtime_libraries": [
+    "libhggc_wrapper.so",
+    "libhggcrt1.so",
+    "libhggc.so",
+    "libhg_wrapper.so"
+  ],
+  "source_sha256": {
+    "setup_ppu.py": "638819b613d31b8df45eaeb358925112fcab9726d854ef915120cce999a184ef",
+    "csrc/qattn/ppu/attn_ppu.h": "79722eac1bcd57899096f17a23e0240263e92c27347dd52c669720c4fbb78bf0",
+    "csrc/qattn/ppu/attn_ppu_layout.cuh": "b22c0a143feffaad60835494b37988f25dd7abf73fec43fcebb92cc5e4252f43",
+    "csrc/qattn/ppu/attn_ppu_ops.cuh": "53facd8089b2fc3edb8e14a5265e789238acaae52a54a70050a42d5fbde9184b",
+    "csrc/qattn/ppu/block_sparse_ppu.cu": "79feeac644d015a0a9b83a634e7505ad613a198900693092f7c8e00b624df6d5",
+    "csrc/qattn/ppu/radial_sparse_ppu.cu": "feff9ff7189c2aa8adc07645994f87d941c4cc8a01101aefaadfcf9827735f26",
+    "csrc/qattn/ppu/pybind_ppu.cpp": "2f2f16085dc37bd1bf1beacdc35a90a5ccbb8ffc2953c0c267950973cbf43195",
+    "csrc/qattn/ppu/quant_ppu.cu": "ba243de3d0797020769b4364b623c6e6fd8f5526946f0c3f477107811b02cad5"
+  }
+}
